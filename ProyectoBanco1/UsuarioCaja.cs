@@ -13,6 +13,7 @@ namespace ProyectoBanco1
         public int idCaja { get; set; }
 
 
+        public UsuarioCaja() { }
         public UsuarioCaja(int id, int idU, int idC)
         {
             this.id = id;

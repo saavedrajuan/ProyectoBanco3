@@ -15,6 +15,7 @@ namespace ProyectoBanco1
         public double limite { get; set; }
         public double consumos { get; set; }
 
+        public TarjetaDeCredito() { }
         public TarjetaDeCredito(int id, int titular, int numero, int codigoV, double limite, double consumos)
         {
             this.id = id;

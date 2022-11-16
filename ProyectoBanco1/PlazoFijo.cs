@@ -19,7 +19,7 @@ namespace ProyectoBanco1
         public int cbu { get; set; }
 
 
-
+        public PlazoFijo() { }
         public PlazoFijo(int id, int idTitular, double monto, DateTime fechaIni, DateTime fechaFin, double tasa, bool pagado, int cbu)
         {
             this.id = id;
