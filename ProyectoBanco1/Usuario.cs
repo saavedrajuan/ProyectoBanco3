@@ -24,6 +24,7 @@ namespace ProyectoBanco1
         public List<TarjetaDeCredito> tarjetas { get; set; }
         public List<Pago>? pagos { get; set; }
 
+        public Usuario() { }
         public Usuario(int id, int dni, string nombre, string apellido, string mail, string password, int intentosFallidos, bool bloqueado, bool esAdmin)
         {
             this.id = id;

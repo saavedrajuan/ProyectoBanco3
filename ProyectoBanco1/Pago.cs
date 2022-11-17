@@ -15,7 +15,7 @@ namespace ProyectoBanco1
         public bool pagado { get; set; }
         public string metodo { get; set; }
 
-      
+        public Pago() { }
         public Pago(int id, Usuario user, string nombre, double monto, bool pagado, string metodo)
         {
             this.id = id;

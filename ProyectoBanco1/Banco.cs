@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Net;
 using System.Runtime.Remoting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProyectoBanco1
 {
@@ -52,17 +53,20 @@ namespace ProyectoBanco1
             pagos = new List<Pago>();
             movimientos = new List<Movimiento>();
             usuarioCaja = new List<UsuarioCaja>();
-            DB = new DAL();
             inicializarAtributos();
         }
 
         public void inicializarAtributos()
         {
-            usuarios = DB.inicializarUsuarios();
-            cajas = DB.inicializarCajas();
-            pfs = DB.inicializarPfs();
-            tarjetas = DB.inicializarTarjetas();
-            usuarioCaja = DB.inicializarUsuarioCaja();
+            MyContext contexto = new MyContext();
+            contexto.usuarios.Load();
+            contexto.usuarioCaja.Load();
+            contexto.tarjetas.Load();
+            contexto.cajas.Load();
+            contexto.movimientos.Load();
+            contexto.pfs.Load();
+            contexto.pagos.Load();
+            
 
             foreach (UsuarioCaja uc in usuarioCaja)
             {
@@ -79,8 +83,6 @@ namespace ProyectoBanco1
                     }
                 }
             }
-            movimientos = DB.inicializarMovimientos();
-            //pagos = DB.inicializarPagos();
         }
 
 

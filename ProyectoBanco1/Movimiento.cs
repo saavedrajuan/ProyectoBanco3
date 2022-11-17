@@ -15,6 +15,7 @@ namespace ProyectoBanco1
         public double monto { get; set; }
         public DateTime fecha { get; set; }
 
+        public Movimiento() { }
         public Movimiento(int id, int idCaja, string detalle, double monto, DateTime fecha)
         {
             this.id = id;

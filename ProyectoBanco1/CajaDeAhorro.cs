@@ -16,6 +16,8 @@ namespace ProyectoBanco1
         public List<Usuario> titulares { get; set; }
         public List<Movimiento> movimientos { get; set; }
 
+        public CajaDeAhorro(){}
+
         public CajaDeAhorro(int id, int cbu, double saldo)
         {
             this.id = id;
