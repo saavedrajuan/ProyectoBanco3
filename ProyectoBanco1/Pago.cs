@@ -10,16 +10,17 @@ namespace ProyectoBanco1
     {
         public int id { get; set; }
         public Usuario user { get; set; }
+        public int idUsuario { get; set; }
         public string nombre { get; set; }
         public double monto { get; set; }
         public bool pagado { get; set; }
         public string metodo { get; set; }
 
         public Pago() { }
-        public Pago(int id, Usuario user, string nombre, double monto, bool pagado, string metodo)
+        public Pago(int id, int idUsuario, string nombre, double monto, bool pagado, string metodo)
         {
             this.id = id;
-            this.user = user;
+            this.idUsuario = idUsuario;
             this.nombre = nombre;
             this.monto = monto;
             this.pagado = pagado;

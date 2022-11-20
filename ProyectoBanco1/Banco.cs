@@ -20,7 +20,7 @@ namespace ProyectoBanco1
          * Atributos
          */
 
-
+        private MyContext contexto;
         private DAL DB;
         public Usuario usuarioActual { get; set; }
         public int nuevoUsuario { get; set; }
@@ -46,6 +46,7 @@ namespace ProyectoBanco1
 
         public Banco()
         {
+            /*
             usuarios = new List<Usuario>();
             cajas = new List<CajaDeAhorro>();
             pfs = new List<PlazoFijo>();
@@ -53,12 +54,14 @@ namespace ProyectoBanco1
             pagos = new List<Pago>();
             movimientos = new List<Movimiento>();
             usuarioCaja = new List<UsuarioCaja>();
+            */
+
             inicializarAtributos();
         }
 
         public void inicializarAtributos()
         {
-            MyContext contexto = new MyContext();
+            contexto = new MyContext();
             contexto.usuarios.Load();
             contexto.usuarioCaja.Load();
             contexto.tarjetas.Load();
@@ -66,8 +69,8 @@ namespace ProyectoBanco1
             contexto.movimientos.Load();
             contexto.pfs.Load();
             contexto.pagos.Load();
-            
 
+            /*
             foreach (UsuarioCaja uc in usuarioCaja)
             {
                 foreach (CajaDeAhorro c in cajas)
@@ -83,6 +86,7 @@ namespace ProyectoBanco1
                     }
                 }
             }
+            */
         }
 
 
