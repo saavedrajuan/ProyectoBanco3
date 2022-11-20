@@ -19,10 +19,11 @@ namespace ProyectoBanco1
         public bool bloqueado { get; set; }
         public bool esAdmin { get; set; }
 
-        public List<CajaDeAhorro> cajas { get; set; }
-        public List<PlazoFijo> pfs { get; set; }
+        public List<UsuarioCaja> userCaja { get; set; }
+        public ICollection<CajaDeAhorro> cajas { get; set; }
+        public List<PlazoFijo> pfs { get; } 
         public List<TarjetaDeCredito> tarjetas { get; set; }
-        public List<Pago>? pagos { get; set; }
+        public List<Pago> pagos { get; set; }
 
         public Usuario() { }
         public Usuario(int id, int dni, string nombre, string apellido, string mail, string password, int intentosFallidos, bool bloqueado, bool esAdmin)

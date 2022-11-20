@@ -10,7 +10,10 @@ namespace ProyectoBanco1
     {
         public int id { get; set; }
         public int idUsuario { get; set; }
+        public Usuario user { get; set; }
+
         public int idCaja { get; set; }
+        public CajaDeAhorro caja { get; set; }
 
 
         public UsuarioCaja() { }

@@ -20,6 +20,7 @@ namespace ProyectoBanco1
          * Atributos
          */
 
+        private MyContext contexto;
 
         private DAL DB;
         public Usuario usuarioActual { get; set; }
@@ -58,7 +59,7 @@ namespace ProyectoBanco1
 
         public void inicializarAtributos()
         {
-            MyContext contexto = new MyContext();
+            contexto = new MyContext();
             contexto.usuarios.Load();
             contexto.usuarioCaja.Load();
             contexto.tarjetas.Load();
@@ -510,7 +511,7 @@ namespace ProyectoBanco1
         public void altaPago(string nombre, float monto, bool pagado, string metodo)
         {
             nuevoPago++;
-            Pago p1 = new Pago(nuevoPago, usuarioActual, nombre, monto, pagado, metodo);
+            Pago p1 = new Pago(nuevoPago, usuarioActual.id, nombre, monto, pagado, metodo);
             usuarioActual.pagos.Add(p1);
             pagos.Add(p1);
 

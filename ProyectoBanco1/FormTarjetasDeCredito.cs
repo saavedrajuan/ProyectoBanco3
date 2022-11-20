@@ -44,7 +44,7 @@ namespace ProyectoBanco1
 
             foreach (var obj in banco.tarjetas)
             {
-                if (banco.usuarioActual.id == obj.titular)
+                if (banco.usuarioActual.id == obj.idTitular)
                 {
                     dataGridView1.Rows.Add(obj.id, obj.numero, obj.codigoV, obj.limite, obj.consumos);
                 }

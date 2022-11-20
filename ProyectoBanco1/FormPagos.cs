@@ -135,7 +135,7 @@ namespace ProyectoBanco1
             foreach (var obj in banco.tarjetas)
             { 
 
-                if (banco.usuarioActual.id == obj.titular)
+                if (banco.usuarioActual.id == obj.idTitular)
                 {
 
                     comboBox2.Items.Add(obj.numero);

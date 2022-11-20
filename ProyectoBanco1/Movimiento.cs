@@ -11,6 +11,7 @@ namespace ProyectoBanco1
     {
         public int id { get; set; }
         public int idCaja { get; set; }
+        public CajaDeAhorro caja { get; set; }
         public string detalle { get; set; }
         public double monto { get; set; }
         public DateTime fecha { get; set; }

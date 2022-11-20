@@ -13,7 +13,8 @@ namespace ProyectoBanco1
         public int cbu { get; set; }
         public double saldo { get; set; }
 
-        public List<Usuario> titulares { get; set; }
+        public List<UsuarioCaja> userCaja { get; set; }
+        public ICollection<Usuario> titulares { get; set; }
         public List<Movimiento> movimientos { get; set; }
 
         public CajaDeAhorro(){}

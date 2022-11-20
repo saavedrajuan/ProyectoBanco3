@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,7 +49,6 @@ namespace ProyectoBanco1
                     usr.Property(u => u.esAdmin).HasColumnType("bit");
                 });
 
-
             //          CAJA DE AHORRO
 
             modelBuilder.Entity<CajaDeAhorro>()
@@ -87,8 +87,8 @@ namespace ProyectoBanco1
             modelBuilder.Entity<Pago>(
                 pago =>
                 {
-                    pago.Property(p => p.user).HasColumnType("int");
-                    pago.Property(p => p.user).IsRequired(true);
+                    pago.Property(p => p.idUsuario).HasColumnType("int");
+                    pago.Property(p => p.idUsuario).IsRequired(true);
                     pago.Property(p => p.nombre).HasColumnType("varchar(100)");
                     pago.Property(p => p.monto).HasColumnType("float");
                     pago.Property(p => p.pagado).HasColumnType("bit");
@@ -121,8 +121,8 @@ namespace ProyectoBanco1
             modelBuilder.Entity<TarjetaDeCredito>(
                 tarj =>
                 {
-                    tarj.Property(t => t.titular).HasColumnType("int");
-                    tarj.Property(t => t.titular).IsRequired(true);
+                    tarj.Property(t => t.idTitular).HasColumnType("int");
+                    tarj.Property(t => t.idTitular).IsRequired(true);
                     tarj.Property(t => t.numero).HasColumnType("int");
                     tarj.Property(t => t.codigoV).HasColumnType("int");
                     tarj.Property(t => t.limite).HasColumnType("float");
@@ -143,14 +143,41 @@ namespace ProyectoBanco1
                     uc.Property(c => c.idCaja).IsRequired(true);
                 });
 
-
-
-
-
-
+        
 
             //Ignoro, no agrego Banco a la base de datos
             modelBuilder.Ignore<Banco>();
+
+
+            modelBuilder.Entity<TarjetaDeCredito>()
+                        .HasOne(t => t.titular)
+                        .WithMany(u => u.tarjetas)
+                        .HasForeignKey(t => t.idTitular);
+            modelBuilder.Entity<PlazoFijo>()
+                        .HasOne(pfs => pfs.titular)
+                        .WithMany(u => u.pfs)
+                        .HasForeignKey(pfs => pfs.idTitular);
+            modelBuilder.Entity<Pago>()
+                        .HasOne(p => p.user)
+                        .WithMany(u => u.pagos)
+                        .HasForeignKey(p => p.idUsuario);
+            modelBuilder.Entity<Movimiento>()
+                        .HasOne(m => m.caja)
+                        .WithMany(c => c.movimientos)
+                        .HasForeignKey(m => m.idCaja);
+            modelBuilder.Entity<CajaDeAhorro>()
+                        .HasMany(c => c.titulares)
+                        .WithMany(u => u.cajas)
+                        .UsingEntity<UsuarioCaja>(
+
+                euc => euc.HasOne(uc => uc.user)
+                            .WithMany(u => u.userCaja)
+                            .HasForeignKey(uc => uc.idUsuario),
+                euc => euc.HasOne(uc => uc.caja)
+                            .WithMany(c => c.userCaja)
+                            .HasForeignKey(uc => uc.idCaja)
+                );
+
         }
 
     }
