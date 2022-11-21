@@ -10,13 +10,12 @@ namespace ProyectoBanco1
 {
     public class MyContext : DbContext
     {
-        public DbSet<Usuario> usuarios;
-        public DbSet<CajaDeAhorro> cajas;
-        public DbSet<PlazoFijo> pfs;
-        public DbSet<TarjetaDeCredito> tarjetas;
-        public DbSet<Pago> pagos;
-        public DbSet<Movimiento> movimientos;
-        public DbSet<UsuarioCaja> usuarioCaja;
+        public DbSet<Usuario> usuarios { get; set; }
+        public DbSet<CajaDeAhorro> cajas { get; set; }
+        public DbSet<PlazoFijo> pfs { get; set; }
+        public DbSet<TarjetaDeCredito> tarjetas { get; set; }
+        public DbSet<Pago> pagos { get; set; }
+        public DbSet<Movimiento> movimientos { get; set; }
 
         public MyContext() { }
 
@@ -129,21 +128,7 @@ namespace ProyectoBanco1
                     tarj.Property(t => t.consumos).HasColumnType("float");
                 });
 
-            //          USUARIOCAJA
-
-            modelBuilder.Entity<UsuarioCaja>()
-                .ToTable("UsuariosCajas")
-                .HasKey(uc => uc.id);
-            modelBuilder.Entity<UsuarioCaja>(
-                uc =>
-                {
-                    uc.Property(c => c.idUsuario).HasColumnType("int");
-                    uc.Property(c => c.idUsuario).IsRequired(true);
-                    uc.Property(c => c.idCaja).HasColumnType("int");
-                    uc.Property(c => c.idCaja).IsRequired(true);
-                });
-
-        
+                  
 
             //Ignoro, no agrego Banco a la base de datos
             modelBuilder.Ignore<Banco>();
@@ -182,8 +167,7 @@ namespace ProyectoBanco1
 
             modelBuilder.Entity<Usuario>().HasData(
                 new { id = 1, dni = 123, nombre = "admin", apellido = "admin", mail = "admin@admin.com", password = "123", intentosFallidos = 0, bloqueado = false, esAdmin = true });
-           
-
+          
         }
 
     }

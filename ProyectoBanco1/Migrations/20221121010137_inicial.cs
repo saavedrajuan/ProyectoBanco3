@@ -139,25 +139,24 @@ namespace ProyectoBanco1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UsuariosCajas",
+                name: "UsuarioCaja",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     idUsuario = table.Column<int>(type: "int", nullable: false),
-                    idCaja = table.Column<int>(type: "int", nullable: false)
+                    idCaja = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsuariosCajas", x => x.id);
+                    table.PrimaryKey("PK_UsuarioCaja", x => new { x.idCaja, x.idUsuario });
                     table.ForeignKey(
-                        name: "FK_UsuariosCajas_Cajas_idCaja",
+                        name: "FK_UsuarioCaja_Cajas_idCaja",
                         column: x => x.idCaja,
                         principalTable: "Cajas",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UsuariosCajas_Usuarios_idUsuario",
+                        name: "FK_UsuarioCaja_Usuarios_idUsuario",
                         column: x => x.idUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "id",
@@ -185,13 +184,8 @@ namespace ProyectoBanco1.Migrations
                 column: "idTitular");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UsuariosCajas_idCaja",
-                table: "UsuariosCajas",
-                column: "idCaja");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UsuariosCajas_idUsuario",
-                table: "UsuariosCajas",
+                name: "IX_UsuarioCaja_idUsuario",
+                table: "UsuarioCaja",
                 column: "idUsuario");
         }
 
@@ -211,7 +205,7 @@ namespace ProyectoBanco1.Migrations
                 name: "Tarjetas");
 
             migrationBuilder.DropTable(
-                name: "UsuariosCajas");
+                name: "UsuarioCaja");
 
             migrationBuilder.DropTable(
                 name: "Cajas");

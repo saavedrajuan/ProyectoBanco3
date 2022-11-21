@@ -55,21 +55,35 @@ namespace ProyectoBanco1
             //pagos = new List<Pago>();
             //movimientos = new List<Movimiento>();
             //usuarioCaja = new List<UsuarioCaja>();
+
             inicializarAtributos();
+            
         }
 
-        public void inicializarAtributos()
+        private void inicializarAtributos()
         {
-            contexto = new MyContext();
-            contexto.usuarios.Include(u => u.cajas).Include(u => u.pagos).Include(u => u.pfs).Include(u => u.tarjetas).Load();
-            contexto.usuarioCaja.Load();
-            contexto.tarjetas.Load();
-            contexto.cajas.Include(c => c.titulares).Include(c => c.movimientos).Load();
-            contexto.movimientos.Load();
-            contexto.pfs.Load();
-            contexto.pagos.Load();
+            try
+            {
+                contexto = new MyContext();
 
-            contexto.SaveChanges();
+                contexto.usuarios.Include(u => u.cajas).Include(u => u.pagos).Include(u => u.pfs).Include(u => u.tarjetas).Load();
+               contexto.tarjetas.Load();
+                contexto.cajas.Include(c => c.titulares).Include(c => c.movimientos).Load();
+                contexto.movimientos.Load();
+                contexto.pfs.Load();
+                contexto.pagos.Load();
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+
+
+
+
 
 
             //foreach (UsuarioCaja uc in usuarioCaja)
@@ -90,7 +104,10 @@ namespace ProyectoBanco1
             //}
         }
 
-
+        public void cerrar()
+        {
+            contexto.Dispose();
+        }
 
         /* 
          * Operaciones de Usuario

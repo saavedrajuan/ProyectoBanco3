@@ -211,25 +211,20 @@ namespace ProyectoBanco1.Migrations
 
             modelBuilder.Entity("ProyectoBanco1.UsuarioCaja", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
                     b.Property<int>("idCaja")
                         .HasColumnType("int");
 
                     b.Property<int>("idUsuario")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.Property<int>("id")
+                        .HasColumnType("int");
 
-                    b.HasIndex("idCaja");
+                    b.HasKey("idCaja", "idUsuario");
 
                     b.HasIndex("idUsuario");
 
-                    b.ToTable("UsuariosCajas", (string)null);
+                    b.ToTable("UsuarioCaja");
                 });
 
             modelBuilder.Entity("ProyectoBanco1.Movimiento", b =>

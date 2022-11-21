@@ -13,7 +13,7 @@ namespace ProyectoBanco1
         public int cbu { get; set; }
         public double saldo { get; set; }
 
-        public List<UsuarioCaja> userCaja { get; set; }
+        public List<UsuarioCaja> userCaja { get; set; } = new List<UsuarioCaja>();
         public ICollection<Usuario> titulares { get; set; } = new List<Usuario>();
         public List<Movimiento> movimientos { get; set; } = new List<Movimiento>();
 
@@ -24,6 +24,7 @@ namespace ProyectoBanco1
             this.id = id;
             this.cbu = cbu;
             this.saldo = saldo;
+
         }
         public override string ToString()
         {
