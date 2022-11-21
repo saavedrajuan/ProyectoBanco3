@@ -14,8 +14,8 @@ namespace ProyectoBanco1
         public double saldo { get; set; }
 
         public List<UsuarioCaja> userCaja { get; set; }
-        public ICollection<Usuario> titulares { get; set; }
-        public List<Movimiento> movimientos { get; set; }
+        public ICollection<Usuario> titulares { get; set; } = new List<Usuario>();
+        public List<Movimiento> movimientos { get; set; } = new List<Movimiento>();
 
         public CajaDeAhorro(){}
 
@@ -24,9 +24,6 @@ namespace ProyectoBanco1
             this.id = id;
             this.cbu = cbu;
             this.saldo = saldo;
-
-            this.titulares = new List<Usuario>();
-            this.movimientos = new List<Movimiento>();
         }
         public override string ToString()
         {

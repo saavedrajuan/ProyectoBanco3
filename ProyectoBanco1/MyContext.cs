@@ -175,8 +175,14 @@ namespace ProyectoBanco1
                             .HasForeignKey(uc => uc.idUsuario),
                 euc => euc.HasOne(uc => uc.caja)
                             .WithMany(c => c.userCaja)
-                            .HasForeignKey(uc => uc.idCaja)
+                            .HasForeignKey(uc => uc.idCaja),
+                euc => euc.HasKey(k => new { k.idCaja, k.idUsuario })
                 );
+
+
+            modelBuilder.Entity<Usuario>().HasData(
+                new { id = 1, dni = 123, nombre = "admin", apellido = "admin", mail = "admin@admin.com", password = "123", intentosFallidos = 0, bloqueado = false, esAdmin = true });
+           
 
         }
 

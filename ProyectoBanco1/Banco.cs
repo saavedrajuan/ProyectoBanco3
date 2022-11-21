@@ -23,6 +23,7 @@ namespace ProyectoBanco1
         private MyContext contexto;
 
         private DAL DB;
+
         public Usuario usuarioActual { get; set; }
         public int nuevoUsuario { get; set; }
         public int nuevaCaja { get; set; }
@@ -47,43 +48,46 @@ namespace ProyectoBanco1
 
         public Banco()
         {
-            usuarios = new List<Usuario>();
-            cajas = new List<CajaDeAhorro>();
-            pfs = new List<PlazoFijo>();
-            tarjetas = new List<TarjetaDeCredito>();
-            pagos = new List<Pago>();
-            movimientos = new List<Movimiento>();
-            usuarioCaja = new List<UsuarioCaja>();
+            //usuarios = new List<Usuario>();
+            //cajas = new List<CajaDeAhorro>();
+            //pfs = new List<PlazoFijo>();
+            //tarjetas = new List<TarjetaDeCredito>();
+            //pagos = new List<Pago>();
+            //movimientos = new List<Movimiento>();
+            //usuarioCaja = new List<UsuarioCaja>();
             inicializarAtributos();
         }
 
         public void inicializarAtributos()
         {
             contexto = new MyContext();
-            contexto.usuarios.Load();
+            contexto.usuarios.Include(u => u.cajas).Include(u => u.pagos).Include(u => u.pfs).Include(u => u.tarjetas).Load();
             contexto.usuarioCaja.Load();
             contexto.tarjetas.Load();
-            contexto.cajas.Load();
+            contexto.cajas.Include(c => c.titulares).Include(c => c.movimientos).Load();
             contexto.movimientos.Load();
             contexto.pfs.Load();
             contexto.pagos.Load();
-            
 
-            foreach (UsuarioCaja uc in usuarioCaja)
-            {
-                foreach (CajaDeAhorro c in cajas)
-                {
-                    foreach (Usuario u in usuarios)
-                    {
-                        if (uc.idUsuario == u.id && uc.idCaja == c.id)
-                        {
-                            u.cajas.Add(c);
-                            c.titulares.Add(u);
-                        }
+            contexto.SaveChanges();
 
-                    }
-                }
-            }
+
+            //foreach (UsuarioCaja uc in usuarioCaja)
+            //{
+            //    foreach (CajaDeAhorro c in cajas)
+            //    {
+            //        foreach (Usuario u in usuarios)
+            //        {
+            //            if (uc.idUsuario == u.id && uc.idCaja == c.id)
+            //            {
+            //                u.cajas.Add(c);
+            //                c.titulares.Add(u);
+
+            //            }
+
+            //        }
+            //    }
+            //}
         }
 
 

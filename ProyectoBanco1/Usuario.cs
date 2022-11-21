@@ -19,11 +19,12 @@ namespace ProyectoBanco1
         public bool bloqueado { get; set; }
         public bool esAdmin { get; set; }
 
-        public List<UsuarioCaja> userCaja { get; set; }
-        public ICollection<CajaDeAhorro> cajas { get; set; }
-        public List<PlazoFijo> pfs { get; } 
-        public List<TarjetaDeCredito> tarjetas { get; set; }
-        public List<Pago> pagos { get; set; }
+        public List<UsuarioCaja> userCaja { get; set; } = new List<UsuarioCaja>();
+        public ICollection<CajaDeAhorro> cajas { get; set; } = new List<CajaDeAhorro>(); 
+        public List<PlazoFijo> pfs { get; } = new List<PlazoFijo>();
+        public List<TarjetaDeCredito> tarjetas { get; set; } = new List<TarjetaDeCredito>();
+        public List<Pago> pagos { get; set; }  = new List<Pago>();
+        
 
         public Usuario() { }
         public Usuario(int id, int dni, string nombre, string apellido, string mail, string password, int intentosFallidos, bool bloqueado, bool esAdmin)
@@ -38,10 +39,6 @@ namespace ProyectoBanco1
             this.bloqueado = bloqueado;
             this.esAdmin = esAdmin;
 
-            cajas = new List<CajaDeAhorro>();  
-            pfs = new List<PlazoFijo>();
-            tarjetas = new List<TarjetaDeCredito>();
-            pagos = new List<Pago>();
         }
         public override string ToString()
         {
